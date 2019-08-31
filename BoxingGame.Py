@@ -12,13 +12,11 @@ window = turtle.Screen()
 window.bgcolor("beige")
 window.title("Boxing Game")
 
-# Add images
-enemy_ship = "spin.gif"
-window.addshape(enemy_ship)
-space_ship = "space_ship.gif"
+# Images of characters
+enemy_boxer = "Boxer.gif"
+window.addshape(enemy_boxer)
+player_boxer = "Boxer.gif"
 window.addshape(space_ship)
-missile = "missile.gif"
-window.addshape(missile)
 
 # Draw border
 border_pen = turtle.Turtle()
@@ -33,13 +31,13 @@ for side in range(4):
     border_pen.lt(90)
 border_pen.hideturtle()
 
-# Set the score to 0
+# Create beginning score as zzero
 score = 0
 
 # Create the player turtle
 player = turtle.Turtle()
 player.color("blue")
-player.shape(space_ship)
+player.shape(player_boxer)
 player.penup()
 player.speed(0)
 player.setposition(0, -250)
@@ -48,7 +46,7 @@ player.setheading(90)
 playerspeed = 15
 enemyspeed = 2
 
-# Move the player left and right
+# Move the player left, right, up, and down
 def move_left():
     x = player.xcor()
     x -= playerspeed
@@ -70,6 +68,13 @@ def move_forward():
         x = 280
     player.setx(x)
     
+def move_backward():
+    x = player.xcor()
+    x += playerspeed
+    if x > 280:
+        x = 280
+    player.setx(x)
+    
 # Create enemy
 enemy = turtle.Turtle()
 enemy.color("red")
@@ -78,14 +83,6 @@ enemy.penup()
 enemy.speed(3)
 enemy.setposition(-100, 100)
 number_of_enemies = 1
-
-# Create an empty list of enemies, might delete
-enemies = []
-
-# Add enemies to the list
-for i in range(number_of_enemies):
-    # Create enemies
-    enemies.append(turtle.Turtle())
 
 # Create keyboard bindings
 turtle.listen()
@@ -124,11 +121,6 @@ scorestring = "Score: %s" % score
 score_pen.write(scorestring, False, align = "left", font = ("Arial", 14, "normal"))
 score_pen.hideturtle()
 
-# Create keyboard bindings
-window.listen()
-turtle.onkey(move_left, "Left")
-turtle.onkey(move_right, "Right")
-turtle.onkey(fire_bullet, "space")
 # Main game loop
 while True:
 
@@ -164,12 +156,10 @@ elif song == 2:
     sound = pygame.mixer.Sound("User_Friendly_future_mix.wav")
 sound.play()
                 
-# Add images
-enemy_ship = "spin.gif"
-window.addshape(enemy_ship)
-space_ship = "space_ship.gif"
-window.addshape(space_ship)
-missile = "missile.gif"
-window.addshape(missile)
+# Add all images
+enemy_boxer = "spin.gif"
+window.addshape(enemy_boxer)
+player_boxer = "space_ship.gif"
+window.addshape(player_boxer)
   
 delay = input("Press enter to finish.")
