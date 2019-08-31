@@ -4,6 +4,9 @@ import random
 import winsound
 import pygame
 
+pygame.init()
+pygame.mixer.init()
+
 # Screen set up
 window = turtle.Screen()
 window.bgcolor("beige")
@@ -126,5 +129,23 @@ score += 10
 scorestring = "Score: %s" %score
 score_pen.clear()
 score_pen.write(scorestring, False, align="left", format ??????
+                
+# Play background music
+song = random.randint(0, 2)
+if song == 0:
+    sound = pygame.mixer.Sound("Star_Song.wav")
+elif song == 1:
+    sound = pygame.mixer.Sound("Telecom.wav")
+elif song == 2:
+    sound = pygame.mixer.Sound("User_Friendly_future_mix.wav")
+sound.play()
+                
+# Add images
+enemy_ship = "spin.gif"
+window.addshape(enemy_ship)
+space_ship = "space_ship.gif"
+window.addshape(space_ship)
+missile = "missile.gif"
+window.addshape(missile)
   
 delay = input("Press enter to finish.")
