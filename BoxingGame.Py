@@ -124,6 +124,30 @@ scorestring = "Score: %s" % score
 score_pen.write(scorestring, False, align = "left", font = ("Arial", 14, "normal"))
 score_pen.hideturtle()
 
+# Create keyboard bindings
+window.listen()
+turtle.onkey(move_left, "Left")
+turtle.onkey(move_right, "Right")
+turtle.onkey(fire_bullet, "space")
+# Main game loop
+while True:
+
+    for enemy in enemies:
+        # Move the enemy
+        x = enemy.xcor()
+        x += enemyspeed
+        enemy.setx(x)
+        # Move the enemy back and down
+        if enemy.xcor() < -280 or enemy.xcor() > 280:
+            for e in enemies:
+                y = e.ycor()
+                y -= 20
+                e.sety(y)
+            enemyspeed *= -1
+        # Check for a collision between the bullet and the enemy
+        if is_collision(bullet, enemy):
+            winsound.PlaySound("Explosion.wav", winsound.SND_FILENAME | winsound.SND_ASYNC)
+
 # Update Score
 score += 10
 scorestring = "Score: %s" %score
