@@ -9,6 +9,14 @@ window = turtle.Screen()
 window.bgcolor("beige")
 window.title("Boxing Game")
 
+# Add images
+enemy_ship = "spin.gif"
+window.addshape(enemy_ship)
+space_ship = "space_ship.gif"
+window.addshape(space_ship)
+missile = "missile.gif"
+window.addshape(missile)
+
 # Draw border
 border_pen = turtle.Turtle()
 border_pen.speed(0)
@@ -66,6 +74,15 @@ enemy.shape("circle")
 enemy.penup()
 enemy.speed(3)
 enemy.setposition(-100, 100)
+number_of_enemies = 1
+
+# Create an empty list of enemies, might delete
+enemies = []
+
+# Add enemies to the list
+for i in range(number_of_enemies):
+    # Create enemies
+    enemies.append(turtle.Turtle())
 
 # Create keyboard bindings
 turtle.listen()
@@ -89,6 +106,25 @@ while True:
     y -= 40
     enemyspeed *= -1
     enemy.sety(y)
-  
+    
+ def isCollision(t1, t2):
+    distance = math.sqrt(math.pow(t1.xcor()-t2.xcor(), 2)+math.pow(t1.ycor()-t2.ycor(2),2))
+                         if distance < 15:
+                         return True
+# Draw the score
+score_pen = turtle.Turtle()
+score_pen.speed(0)
+score_pen.color("white")
+score_pen.penup()
+score_pen.setposition(-295, 275)
+scorestring = "Score: %s" % score
+score_pen.write(scorestring, False, align = "left", font = ("Arial", 14, "normal"))
+score_pen.hideturtle()
+
+# Update Score
+score += 10
+scorestring = "Score: %s" %score
+score_pen.clear()
+score_pen.write(scorestring, False, align="left", format ??????
   
 delay = input("Press enter to finish.")
