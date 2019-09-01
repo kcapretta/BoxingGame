@@ -145,7 +145,7 @@ while True:
 score += 10
 scorestring = "Score: %s" %score
 score_pen.clear()
-score_pen.write(scorestring, False, align="left", format ??????
+score_pen.write(scorestring, False, align="left", format)
                 
 # Play background music
 song = random.randint(0, 2)
