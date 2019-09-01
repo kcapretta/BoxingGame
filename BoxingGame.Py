@@ -1,11 +1,11 @@
 import turtle
 import math
 import random
-import winsound
+#import winsound
 import pygame
 
-pygame.init()
-pygame.mixer.init()
+#pygame.init()
+#pygame.mixer.init()
 
 # Screen set up
 window = turtle.Screen()
@@ -16,7 +16,7 @@ window.title("Boxing Game")
 enemy_boxer = "Boxer.gif"
 window.addshape(enemy_boxer)
 player_boxer = "Boxer.gif"
-window.addshape(space_ship)
+window.addshape(player_boxer)
 
 # Draw border
 border_pen = turtle.Turtle()
