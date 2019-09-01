@@ -1,8 +1,5 @@
 import turtle
 import math
-import random
-#import winsound
-import pygame
 
 #pygame.init()
 #pygame.mixer.init()
@@ -12,16 +9,11 @@ window = turtle.Screen()
 window.bgcolor("beige")
 window.title("Boxing Game")
 
-# Images of characters
-enemy_boxer = "Boxer.gif"
-window.addshape(enemy_boxer)
-player_boxer = "Boxer.gif"
-window.addshape(player_boxer)
-
-# Draw border
+# Draw ring for boxers
 border_pen = turtle.Turtle()
 border_pen.speed(0)
 border_pen.color("white")
+border_pen.width(5)
 border_pen.penup()
 border_pen.setposition(-200, -200)
 border_pen.pendown()
@@ -31,12 +23,8 @@ for side in range(4):
     border_pen.lt(90)
 border_pen.hideturtle()
 
-# Create beginning score as zzero
-score = 0
-
 # Create the player turtle
 player = turtle.Turtle()
-player.color("blue")
 player.shape(player_boxer)
 player.penup()
 player.speed(0)
@@ -44,7 +32,17 @@ player.setposition(0, -250)
 player.setheading(90)
 
 playerspeed = 15
+
+# Images of characters
+enemy_boxer = "Boxer.gif"
+window.addshape(enemy_boxer)
+player_boxer = "Boxer.gif"
+window.addshape(player_boxer)
+
 enemyspeed = 2
+
+# Create beginning score as zero
+score = 0
 
 # Move the player left, right, up, and down
 def move_left():
@@ -82,12 +80,13 @@ enemy.shape("circle")
 enemy.penup()
 enemy.speed(3)
 enemy.setposition(-100, 100)
-number_of_enemies = 1
 
 # Create keyboard bindings
 turtle.listen()
 turtle.onkey(move_left, "Left")
 turtle.onkey(move_right, "Right")
+turtle.onkey(move_up, "Up")
+turtle.onkey(move_down, "Down")
 
 # Main game loop
 while True:
@@ -114,7 +113,7 @@ while True:
 # Draw the score
 score_pen = turtle.Turtle()
 score_pen.speed(0)
-score_pen.color("white")
+score_pen.color("black")
 score_pen.penup()
 score_pen.setposition(-295, 275)
 scorestring = "Score: %s" % score
@@ -129,6 +128,7 @@ while True:
         x = enemy.xcor()
         x += enemyspeed
         enemy.setx(x)
+        
         # Move the enemy back and down
         if enemy.xcor() < -280 or enemy.xcor() > 280:
             for e in enemies:
@@ -136,6 +136,7 @@ while True:
                 y -= 20
                 e.sety(y)
             enemyspeed *= -1
+            
         # Check for a collision between the bullet and the enemy
         if is_collision(bullet, enemy):
             winsound.PlaySound("Explosion.wav", winsound.SND_FILENAME | winsound.SND_ASYNC)
@@ -156,10 +157,5 @@ elif song == 2:
     sound = pygame.mixer.Sound("User_Friendly_future_mix.wav")
 sound.play()
                 
-# Add all images
-enemy_boxer = "spin.gif"
-window.addshape(enemy_boxer)
-player_boxer = "space_ship.gif"
-window.addshape(player_boxer)
   
 delay = input("Press enter to finish.")
